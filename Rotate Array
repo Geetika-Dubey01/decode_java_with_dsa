@@ -1,0 +1,39 @@
+package arrays;
+public class rotateArray {
+public static void main(String[] args) {
+    int[] array = {1,2,3,4,5};
+    int k = 3;
+    System.out.print("Original Array");
+    displayArray(array);
+    rotateArray(array,k);
+    System.out.println("Rotate Array: ");
+    displayArray(array);
+}
+    static void rotateArray(int[]arr,int k) {
+    int n =arr.length;
+    k = k % n; //efective rotation
+    //reverse the entire array
+    reverseArray(arr, 0, n - 1);
+    //revers the first k elements
+    reverseArray(arr, 0, k - 1);
+    //reverse the remaining n - k element
+    reverseArray(arr, k, n - 1);
+}
+static void reverseArray(int[]arr, int start, int end){
+    while (start < end) {
+        //swap elements at start and end indices
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        //Move pointers towards the center
+        start++;
+        end--;
+    }
+}
+static void displayArray(int[]arr) {
+    for (int  num : arr) {
+        System.out.print(num +" ");
+    }
+    System.out.println();
+}
+}
