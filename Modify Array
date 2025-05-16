@@ -1,0 +1,16 @@
+package arrays;
+public class main {
+    public static void main(String[] args) {
+        int[] numbers ={1,2,3,4,5};
+        modifyArray(numbers);
+        System.out.print("Modified array");
+        for (int num : numbers) {
+            System.out.print(num +" ");
+        }
+    }
+    static void modifyArray(int[]arr) {
+        for (int  i = 0; i < arr.length; i++) {
+         arr[i] = arr[i] * 2;
+        }
+    }
+}
