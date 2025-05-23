@@ -1,0 +1,16 @@
+package strings;
+public class append {
+    public static void main(String[] args) {
+        java.lang.StringBuilder s = new java.lang.StringBuilder();
+        System.out.println(s);
+        s.append(35);
+        System.out.println(s);
+        s.append('*');
+        System.out.println(s);
+        s.append("xyz");
+        System.out.println(s);
+        char[] ch = { 'r','a','g'};
+        s.append(ch);
+        System.out.println(s);
+    }
+}
