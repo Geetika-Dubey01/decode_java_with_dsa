@@ -1,0 +1,7 @@
+package strings;
+public class builtinstringMethods {
+    public static void main(String[] args) {
+        String str = "geetika dubey";
+        System.out.println(str.charAt(5));
+    }
+}
