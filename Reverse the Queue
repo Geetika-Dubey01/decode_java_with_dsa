@@ -1,0 +1,46 @@
+package Queue;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
+public class Queue_reverse {
+    static Queue<Integer> queue = new LinkedList<>();
+public static void main(String[] args) {
+    queue.add(1);
+    queue.add(2);
+    queue.add(3);
+    queue.add(4);
+    queue.add(5);
+    System.out.println("Original Queue:");
+    print();
+    //reverse the queue
+    queue.add(5);
+    queue.add(4);
+    queue.add(3);
+    queue.add(2);
+    queue.add(1);
+    System.out.println("Reverse Queue:");
+    reverseSequence();
+    print();
+}
+static void print() {
+    while(!queue.isEmpty()){
+        System.out.println(queue.peek()+",");
+        queue.remove();
+    }
+    System.out.println();
+}
+static void reverseSequence() {
+    Stack<Integer> stack = new Stack<>(); // remove from queue and push to stack
+  while(!queue.isEmpty()) {
+      stack.push(queue.remove());
+  }
+  //pop from stack and add bck to queue
+    while(!stack.isEmpty()); {
+        queue.add(stack.pop());
+    }
+    System.out.println();
+
+}
+
+        }
+
