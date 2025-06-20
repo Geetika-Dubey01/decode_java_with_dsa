@@ -1,0 +1,70 @@
+package Queue;
+
+public class ArrayQueue {
+    int front,rear,capacity;
+    int[] queue;
+    ArrayQueue(int size) {    // constructor
+        capacity = size;
+        queue = new int [capacity];
+        front = 0;
+        rear = -1;
+    }
+       // enqueue
+    void enqueue(int data) {
+        if(isFull()) {
+            System.out.println("Queue is full!");
+            return;
+        }
+        rear++;
+        queue[rear] = data;
+    } // dequeue
+    int dequeue () {
+        if(isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        int item = queue[front];
+        front ++;
+        return item;
+    } // peek
+    int peek() {
+        if( isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        return queue[front];
+    }
+    // isEmpty
+    boolean isEmpty() {
+        return front > rear;
+    }
+    //is full
+    boolean isFull() {
+        return rear == capacity - 1;
+    } // display
+    void display () {
+        if(isEmpty()) {
+            System.out.println("Queue is empty!");
+            return;
+        }
+        System.out.println("Queue: ");
+        for (int i = front; i <= rear; i++){
+            System.out.println(queue[i] + " ");
+        }
+        System.out.println();
+    } // main method
+
+    public static void main(String[] args) {
+        ArrayQueue q = new ArrayQueue(5);
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.enqueue(40);
+        q.enqueue(50);
+        q.display();
+        System.out.println("Dequeue: " + q.dequeue());
+        q.display();
+        System.out.println("Front Element : " + q.peek());
+
+    }
+}
