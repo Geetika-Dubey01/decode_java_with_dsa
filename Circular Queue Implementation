@@ -1,0 +1,79 @@
+package Queue;
+public class CircularQueue {
+    int size;
+    int front,rear;
+    int[]queue;
+//constructor
+CircularQueue(int size) {
+    this.size = size;
+    front = -1;
+    rear = -1;
+    queue = new int[size];
+}
+//check if queue is full
+boolean isFull() {
+    return (front == (rear + 1) % size);
+}
+//check if queue is empty
+boolean isEmpty () {
+    return (front == -1);
+}
+//enqueue operation
+void enqueue (int value) {
+    if(isFull()) {
+        System.out.println("Queue is Full");
+        return;
+    }
+    if (isEmpty()) {
+        front = 0;
+    }
+    rear = (rear+1) % size;
+    queue[rear] = value;
+    System.out.println("Inserted: " + value);
+}
+//dequeue operation
+int dequeue () {
+    if (isEmpty()) {
+        System.out.println("queue is empty");
+        return -1;
+    }
+    int data = queue[front];
+    if(front == rear){
+        front = rear = -1;
+    } else {
+        front = (front +1) % size;
+    }
+    return data;
+ } //display queue
+void display() {
+    if(isEmpty()) {
+        System.out.println("Queue is empty");
+        return;
+    }
+    System.out.println("Queue: ");
+    int i = front;
+    while(true) {
+        System.out.print(queue[i] + " ");
+        if(i == rear)
+        break;
+        i = (i + 1 ) % size;
+    }
+    System.out.println();
+}
+public static void main(String[] args) {
+ CircularQueue q = new CircularQueue(5);
+ q.enqueue(10);
+ q.enqueue(20);
+q.enqueue(30);
+q.enqueue(40);
+q.display();
+q.dequeue();
+q.dequeue();
+q.display();
+q.enqueue(50);
+q.enqueue(60);
+q.display();
+
+q.enqueue(70);
+}
+   }
