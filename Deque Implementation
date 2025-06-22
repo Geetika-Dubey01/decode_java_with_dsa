@@ -1,0 +1,106 @@
+package Queue;
+public class Deque {
+    int arr [];
+    int front,rear,size;
+    //constructor
+    Deque(int size) {
+        arr = new int [size];
+        front = -1;
+        rear = 0;
+    }
+    //check if deque if full
+    boolean isfull() {
+        return (front == 0 && rear == size -1) ||
+                (front == rear + 1);
+    }
+    //check if deque is empty
+    boolean isEmpty()  {
+        return front == -1;
+    }
+    // insert at front
+    void insertFront(int key) {
+        if(isfull()) {
+            System.out.println("overflow");
+            return;
+        }
+        // first element
+        if(front == -1) {
+            front = rear = 0;
+        }
+        else if(front == 0)
+            front = size -1;
+        else front = front -1;
+        arr[front] = key;
+    }
+    //insert at rear
+    void insertRear(int key) {
+        if(isfull()) {
+            System.out.println("overflow");
+            return;
+        }
+        //first element
+        if (front == -1) {
+            front =rear = 0;
+        }
+        else if (rear == size - 1)
+            rear = 0;
+        else rear = rear + 1;
+    arr[rear] = key;
+    }
+    //delete front
+    void deleteFront() {
+        if (isEmpty()) {
+            System.out.println("underflow");
+            return;
+        }
+        if (front == rear)
+            front = rear = -1;
+        else if(front == size - 1)
+            front = 0;
+        else front = front +1;
+    }
+    //delete rear
+    void deleteRear() {
+        if (isEmpty()) {
+            System.out.println("underflow");
+            return;
+        }
+        if (front == rear)
+            front = rear = -1;
+        else if(rear == 0)
+            rear = size-1;
+        else rear = rear -1;
+    }
+
+
+    // getfront
+    int getFront() {
+        if (isEmpty()) {
+            System.out.println("Deque is Empty");
+            return -1;
+        }
+        return arr[front];
+    }
+    int getRear() {
+        if (isEmpty()) {
+            System.out.println("Deque is Empty");
+            return -1;
+        }
+        return arr[rear];
+
+    }
+        public static void main(String[] args) {
+        Deque dp = new Deque(5);
+        dp.insertRear(10);
+        dp.insertRear(20);
+        dp.insertRear(30);
+        dp.insertRear(40);
+        dp.insertRear(50);
+        dp.deleteFront();
+        dp.deleteRear();
+            System.out.println("Front after deletion: " + dp.getFront());
+            System.out.println("Rear after deletion: " + dp.getRear());
+    }
+    }
+
+
