@@ -1,0 +1,18 @@
+package Hashmaps;
+import java.util.HashMap;
+public class iterateMap {
+    public static void main(String[] args) {
+        HashMap<String,Integer> map = new HashMap<>();
+        map.put("Raghav",76);
+        map.put("Himanshu",83);
+        map.put("Amritanshu",12);
+        map.put("Ayushi",82);
+for(String key: map.keySet()){
+    System.out.println(key+" "+map.get(key));
+}
+        System.out.println();
+for(Object pair: map.entrySet()){
+    System.out.println(pair);
+}
+    }
+}
