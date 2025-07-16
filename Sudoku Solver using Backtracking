@@ -1,0 +1,68 @@
+public class SudokuSolver {
+    public static void main(String[] args) {
+        char[][] board = new char[9][9];
+        String[] input = {
+            "53..7....",
+            "6..195...",
+            ".98....6.",
+            "8...6...3",
+            "4..8.3..1",
+            "7...2...6",
+            ".6....28.",
+            "...419..5",
+            "....8..79"
+        };
+
+        for (int i = 0; i < 9; i++) {
+            board[i] = input[i].toCharArray();
+        }
+
+        solveSudoku(board);
+        printBoard(board);
+    }
+
+    public static void solveSudoku(char[][] board) {
+        solve(board);
+    }
+
+    public static boolean solve(char[][] board) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (board[row][col] == '.') {
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (isValid(board, row, col, c)) {
+                            board[row][col] = c;
+                            if (solve(board)) return true;
+                            board[row][col] = '.'; 
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true; 
+    }
+
+    public static boolean isValid(char[][] board, int row, int col, char c) {
+        for (int i = 0; i < 9; i++) {
+            if (board[row][i] == c || board[i][col] == c)
+                return false;
+
+            int gridRow = 3 * (row / 3) + i / 3;
+            int gridCol = 3 * (col / 3) + i % 3;
+            if (board[gridRow][gridCol] == c)
+                return false;
+        }
+        return true;
+    }
+
+    public static void printBoard(char[][] board) {
+        System.out.println("Solved Sudoku:");
+        for (char[] row : board) {
+            for (char cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+}
