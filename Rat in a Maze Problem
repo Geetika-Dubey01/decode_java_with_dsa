@@ -1,0 +1,45 @@
+public class RatInMaze {
+    static int N = 4;
+    static int[][] maze = {
+        {1, 0, 0, 0},
+        {1, 1, 0, 1},
+        {0, 1, 0, 0},
+        {1, 1, 1, 1}
+    };
+
+    public static void main(String[] args) {
+        int[][] solution = new int[N][N];
+
+        if (solveMaze(0, 0, solution)) {
+            printSolution(solution);
+        } else {
+            System.out.println("No path found");
+        }
+    }
+    public static boolean solveMaze(int row, int col, int[][] solution) {
+        if (row == N - 1 && col == N - 1) {
+            solution[row][col] = 1;
+            return true;
+        }
+        if (isSafe(row, col)) {
+            solution[row][col] = 1; // mark current cell as part of the path
+            if (solveMaze(row + 1, col, solution)) return true;
+            if (solveMaze(row, col + 1, solution)) return true;
+            solution[row][col] = 0;
+            return false;
+        }
+        return false;
+    }
+    public static boolean isSafe(int row, int col) {
+        return row >= 0 && col >= 0 && row < N && col < N && maze[row][col] == 1;
+    }
+    public static void printSolution(int[][] solution) {
+        System.out.println("Path from (0,0) to (" + (N - 1) + "," + (N - 1) + "):");
+        for (int[] row : solution) {
+            for (int cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+}
