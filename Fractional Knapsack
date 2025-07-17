@@ -1,0 +1,36 @@
+import java.util.*;
+
+class FractionalKnapsack {
+    static class Item {
+        int value, weight;
+        Item(int v, int w) {
+            value = v;
+            weight = w;
+        }
+    }
+
+    public static void main(String[] args) {
+        Item[] items = {
+            new Item(60, 10),
+            new Item(100, 20),
+            new Item(120, 30)
+        };
+        int W = 50;
+
+        // Sort by value/weight ratio
+        Arrays.sort(items, (a, b) -> Double.compare((double)b.value/b.weight, (double)a.value/a.weight));
+
+        double totalValue = 0;
+        for (Item item : items) {
+            if (W >= item.weight) {
+                totalValue += item.value;
+                W -= item.weight;
+            } else {
+                totalValue += item.value * ((double)W / item.weight);
+                break;
+            }
+        }
+
+        System.out.println("Maximum value in knapsack: " + totalValue);
+    }
+}
